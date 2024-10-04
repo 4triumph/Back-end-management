@@ -15,6 +15,7 @@ const handleLogin = async ()=>{
     store.updateMenuList(res.menuList)
     store.state.token = res.token
     router.push('/home')
+    store.addMenu(router)
 }
 </script>
 

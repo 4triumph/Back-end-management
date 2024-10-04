@@ -212,7 +212,7 @@ onMounted(() => {
                 </template>
             </el-table-column>
         </el-table>
-        <el-pagination class="pager" background layout="prev, pager, next" :total="config.total" :size="small"
+        <el-pagination class="pager" background layout="prev, pager, next" :total="config.total" size="small"
             @current-change="handleChange" />
     </div>
     <el-dialog v-model="dialogVisible" :title="action == 'add' ? '新增用户' : '编辑用户'" width="35%"
