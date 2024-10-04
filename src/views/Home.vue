@@ -139,21 +139,58 @@ const getChartData = async () => {
     threeEchart.setOption(pieOptions)
 
     // 监听页面变化
-    observer.value = new ResizeObserver((en)=>{
+    observer.value = new ResizeObserver((en) => {
         oneEchart.resize()
         twoEchart.resize()
         threeEchart.resize()
     })
 
     // 容器存在
-    if(proxy.$refs['echart']){
+    if (proxy.$refs['echart']) {
         observer.value.observe(proxy.$refs['echart'])
     }
 }
+
+// 定义变量
+const loginTime = ref('')
+const loginLocation = ref('')
+
+// 获取当前时间
+const getCurrentTime = () => {
+    const now = new Date()
+    loginTime.value = now.toLocaleString('zh-CN', { hour12: false })
+}
+
+// 通过 IP 获取城市（使用示例 API）
+const getLocation = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const { latitude, longitude } = position.coords;
+            // 使用逆地理编码 API 将经纬度转换为城市名称
+            try {
+                const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=zh`)
+                const data = await res.json()
+                loginLocation.value = data.city || '未知地点'
+            } catch (error) {
+                console.error('逆地理编码失败', error)
+                loginLocation.value = '未知地点'
+            }
+        }, (error) => {
+            console.error('获取地理位置失败', error)
+            loginLocation.value = '未知地点'
+        })
+    } else {
+        console.error('浏览器不支持地理定位')
+        loginLocation.value = '未知地点'
+    }
+}
+
 onMounted(() => {
     getTableData()
     getCountData()
     getChartData()
+    getCurrentTime()
+    getLocation()
 })
 </script>
 
@@ -169,8 +206,8 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="login-info">
-                    <p>上次登录时间：<span>2024-06-30</span></p>
-                    <p>上次登录地点：<span>上海</span></p>
+                    <p>本次登录时间：<span>{{ loginTime }}</span></p>
+                    <p>本次登录地点：<span>{{ loginLocation }}</span></p>
                 </div>
             </el-card>
             <el-card shadow="hover" class="user-table">
@@ -299,10 +336,12 @@ onMounted(() => {
             }
         }
     }
+
     .graph {
         margin-top: 20px;
         display: flex;
         justify-content: space-between;
+
         .el-card {
             width: 48%;
             height: 260px;
