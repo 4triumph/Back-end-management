@@ -200,7 +200,7 @@ onMounted(() => {
     </div>
     <div class="table">
         <el-table :data="tableData" style="width: 100%">
-            <el-table-column v-for="item in tableLabel" :key="item.prop" :width="item.width ? item.width : 125"
+            <el-table-column v-for="item in tableLabel" :key="item.prop" :width="item.width ? item.width : 115"
                 :prop="item.prop" :label="item.label">
             </el-table-column>
             <el-table-column fixed="right" label="Operations" min-width="120">

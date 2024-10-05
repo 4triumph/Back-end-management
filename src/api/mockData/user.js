@@ -18,15 +18,23 @@ function param2Obj(url) {
 
 let List = []
 const count = 200
-//模拟200条用户数据
+
+const getAge = (birthDate) => {
+  const birthYear = new Date(birthDate).getFullYear()
+  const currentYear = new Date().getFullYear()
+  return currentYear - birthYear
+}
+
 for (let i = 0; i < count; i++) {
+  const birthDate = Mock.Random.date()
+  const age = getAge(birthDate) 
   List.push(
     Mock.mock({
       id: Mock.Random.guid(),
       name: Mock.Random.cname(),
       addr: Mock.mock('@county(true)'),
-      'age|18-60': 1,
-      birth: Mock.Random.date(),
+      age: age,
+      birth: birthDate,
       sex: Mock.Random.integer(0, 1),
     })
   )
