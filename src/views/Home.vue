@@ -196,8 +196,8 @@ onMounted(() => {
 
 <template>
     <el-row class="home" :gutter="20">
-        <el-col :span="8" style="margin-top: 20px;">
-            <el-card shadow="hover">
+        <el-col :span="8">
+            <el-card shadow="hover" class="user-board">
                 <div class="user">
                     <img :src="getImageUrl('user')" class="user" />
                     <div class="user-info">
@@ -218,7 +218,7 @@ onMounted(() => {
                 </el-table>
             </el-card>
         </el-col>
-        <el-col :span="16" style="margin-top: 20px;">
+        <el-col :span="16">
             <div class="num">
                 <el-card :body-style="{ display: 'flex', padding: 0 }" v-for="item in countData" :key="item.name">
                     <component :is="item.icon" class="icons" :style="{ background: item.color }"></component>
@@ -229,7 +229,7 @@ onMounted(() => {
                 </el-card>
             </div>
             <el-card class="top-echart">
-                <div ref="echart" style="height: 280px;"></div>
+                <div ref="echart" style="height: 220px;"></div>
             </el-card>
             <div class="graph">
                 <el-card>
@@ -251,27 +251,30 @@ onMounted(() => {
 .home {
     height: 100%;
     overflow: hidden;
-
+    .user-board {
+        border-radius: 20px;
+    }
     .user {
         display: flex;
         align-items: center;
         border-bottom: 1px solid #ccc;
-        margin-bottom: 20px;
+        margin-bottom: 0;
 
         img {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            margin: 40px;
+            margin: 20px;
+            // margin: 40px;
         }
 
         .user-info {
             p {
-                line-height: 40px;
+                line-height: 30px;
             }
 
             .user-info-admin {
-                font-size: 35px;
+                font-size: 25px;
             }
 
             .user-info-p {
@@ -284,7 +287,7 @@ onMounted(() => {
     .login-info {
         p {
             line-height: 30px;
-            font-size: 14px;
+            font-size: 12px;
             color: #999;
 
             span {
@@ -296,6 +299,7 @@ onMounted(() => {
 
     .user-table {
         margin-top: 20px;
+        border-radius: 20px;
     }
 
     .num {
@@ -306,16 +310,16 @@ onMounted(() => {
         .el-card {
             width: 32%;
             margin-bottom: 20px;
+            border-radius: 10px;
         }
 
         .icons {
-            width: 80px;
-            height: 80px;
-            font-size: 30px;
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
             text-align: center;
             line-height: 80px;
             color: #fff;
-            ;
         }
 
         .detail {
@@ -325,18 +329,20 @@ onMounted(() => {
             justify-content: center;
 
             .num {
-                font-size: 30px;
+                font-size: 20px;
                 margin-bottom: 10px;
             }
 
             .txt {
-                font-size: 15px;
+                font-size: 10px;
                 text-align: center;
                 color: #999;
             }
         }
     }
-
+    .top-echart {
+        padding: 0;
+    }
     .graph {
         margin-top: 20px;
         display: flex;
@@ -348,4 +354,5 @@ onMounted(() => {
         }
     }
 }
+
 </style>

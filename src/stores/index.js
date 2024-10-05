@@ -87,11 +87,11 @@ export const useAllDataStore = defineStore("allData", () => {
   }
   function clean() {
     state.value.routerList.forEach((item) => {
-      if (item) item();
-    });
-    state.value = initState();
+      if (item) item()
+    })
+    state.value = initState()
     //删除我们本地的缓存
-    localStorage.removeItem("store");
+    localStorage.removeItem('store')
   }
   return {
     state,
@@ -99,6 +99,6 @@ export const useAllDataStore = defineStore("allData", () => {
     updateTags,
     updateMenuList,
     addMenu,
-    clean,
+    clean
   };
 });

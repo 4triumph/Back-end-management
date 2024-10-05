@@ -35,6 +35,7 @@ const store = useAllDataStore()
 const handleCollapse = () => (
   store.state.isCollapse = !store.state.isCollapse
 )
+const router = useRouter()
 const handleLoginOut = ()=>{
   store.clean();
   router.push('/login')
