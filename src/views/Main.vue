@@ -28,6 +28,6 @@ import CommonTab from '../components/CommonTab.vue';
         height: 100%;
     }
     .el-header {
-        background-color: #333;
+        background: linear-gradient(180deg, #01162c 100%, #022362 0%);
     }
 </style>
