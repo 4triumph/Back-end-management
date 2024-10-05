@@ -132,7 +132,11 @@ const getChartData = async () => {
     pieOptions.series = [
         {
             data: videoData,
-            type: 'pie'
+            type: 'pie',
+            radius: ['40%', '70%'],
+            center: ['50%', '70%'],
+            startAngle: 180,
+            endAngle: 360,
         }
     ]
     const threeEchart = echarts.init(proxy.$refs['videoEchart'])
@@ -228,16 +232,16 @@ onMounted(() => {
                     </div>
                 </el-card>
             </div>
-            <el-card class="top-echart">
-                <div ref="echart" style="height: 220px;"></div>
+            <el-card class="top-echart" style="height: 200px; border-radius: 10px;">
+                <div ref="echart" style="height: 200px;"></div>
             </el-card>
             <div class="graph">
-                <el-card>
-                    <div ref="userEchart" style="height: 240px;">
+                <el-card style="border-radius: 10px;">
+                    <div ref="userEchart" style="height: 230px;">
 
                     </div>
                 </el-card>
-                <el-card>
+                <el-card style="border-radius: 10px;">
                     <div ref="videoEchart" style="height: 240px;">
 
                     </div>
@@ -251,9 +255,11 @@ onMounted(() => {
 .home {
     height: 100%;
     overflow: hidden;
+
     .user-board {
         border-radius: 20px;
     }
+
     .user {
         display: flex;
         align-items: center;
@@ -309,13 +315,13 @@ onMounted(() => {
 
         .el-card {
             width: 32%;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border-radius: 10px;
         }
 
         .icons {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             font-size: 20px;
             text-align: center;
             line-height: 80px;
@@ -340,19 +346,16 @@ onMounted(() => {
             }
         }
     }
-    .top-echart {
-        padding: 0;
-    }
+
     .graph {
-        margin-top: 20px;
         display: flex;
         justify-content: space-between;
 
         .el-card {
+            margin-top: 20px;
             width: 48%;
-            height: 260px;
+            height: 240px;
         }
     }
 }
-
 </style>

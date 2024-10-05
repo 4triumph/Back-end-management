@@ -2,7 +2,7 @@
   <div class="header">
     <div class="l-content">
       <el-button size="small" @click="handleCollapse">
-        <component class="icons" is="menu"></component>
+        <el-icon><Grid /></el-icon>
       </el-button>
       <el-breadcrumb separator="/" class="bread">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -28,6 +28,7 @@
 import { ref, computed } from 'vue'
 import { useAllDataStore } from '@/stores'
 import {useRouter} from 'vue-router'
+import { Menu } from '@element-plus/icons-vue' 
 const getImageUrl = (user) => {
   return new URL(`../assets/images/${user}.png`, import.meta.url).href;
 };
@@ -53,11 +54,13 @@ const current = computed(()=>store.state.currentMenu)
   height: 100%;
   background-color: #333;
 }
-
 .icons {
   width: 20px;
   height: 20px;
+  background-color: #000;
+  transform: rotate(45deg); /* 旋转 45 度 */
 }
+
 
 .l-content {
   display: flex;
